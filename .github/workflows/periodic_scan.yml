@@ -10,9 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: discovery_0
-        run: bash -c 'find / -name "*.ipa"'
-
       - name: Install Flutter
         uses: subosito/flutter-action@v2
         with:
@@ -27,13 +24,9 @@ jobs:
         working-directory: ostorlab_insecure_flutter_app
         run: flutter build ipa --no-sound-null-safety --no-codesign
 
+      # TODO(Anas): remove this.
       - name: discovery
         run: bash -c 'find / -name "*.ipa"'
-
-#        uses: actions/upload-artifact@v3
-#        with:
-#          name: Ipa-file
-#          path: build/ios/ipa/*.ipa
 
       - name: Upload IPA
         uses: actions/upload-artifact@v3
