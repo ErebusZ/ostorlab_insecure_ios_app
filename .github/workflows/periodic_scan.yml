@@ -26,7 +26,7 @@ jobs:
 
       # TODO(Anas): remove this.
       - name: discovery
-        run: bash -c 'find . -name "*.ipa"'
+        run: bash -c 'ls /Users/runner/work/ostorlab_insecure_ios_app/ostorlab_insecure_ios_app/ostorlab_insecure_flutter_app/build/ios/'
 
       - name: Upload IPA
         uses: actions/upload-artifact@v3
