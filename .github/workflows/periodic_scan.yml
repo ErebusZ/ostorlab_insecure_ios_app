@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: discovery_0
-        run: bash -c find . -name '*.ipa'
+        run: bash -c find / -name *.ipa
 
       - name: Install Flutter
         uses: subosito/flutter-action@v2
@@ -28,7 +28,7 @@ jobs:
         run: flutter build ipa --no-sound-null-safety --no-codesign
 
       - name: discovery
-        run: bash -c find . -name '*.ipa'
+        run: bash -c find / -name *.ipa
 #        uses: actions/upload-artifact@v3
 #        with:
 #          name: Ipa-file
