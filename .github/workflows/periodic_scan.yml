@@ -28,7 +28,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Ipa-file
-          path: ios/build/IPA/*.ipa
+          path: build/ios/ipa/Runner.ipa
 
   run_scan:
     runs-on: ubuntu-latest
@@ -44,5 +44,5 @@ jobs:
           scan_profile: full_scan
           asset_type: ios-ipa
           scan_title: Periodic_Insecure_ipa
-          target: ios/build/IPA/*.ipa
+          target: Runner.ipa
           ostorlab_api_key: ${{ secrets.ostorlab_api_key }}
