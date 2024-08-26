@@ -24,11 +24,18 @@ jobs:
         working-directory: ostorlab_insecure_flutter_app
         run: flutter build ipa --no-sound-null-safety --no-codesign
 
+      - name: discovery
+        run: find . -name '*.ipa'
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: Ipa-file
+#          path: build/ios/ipa/*.ipa
+
       - name: Upload IPA
         uses: actions/upload-artifact@v3
         with:
           name: Ipa-file
-          path: build/ios/ipa/Runner.ipa
+          path: build/ios/ipa/*.ipa
 
   run_scan:
     runs-on: ubuntu-latest
