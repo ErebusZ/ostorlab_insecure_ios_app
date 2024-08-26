@@ -1,5 +1,6 @@
 name: Periodic Scan
 on:
+  workflow_dispatch:
   schedule:
     - cron: "* * * * *"
 
