@@ -5,7 +5,7 @@ on:
     - cron: "* * * * *"
 
 jobs:
-  test:
+  build_app:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,12 +24,25 @@ jobs:
         working-directory: ostorlab_insecure_flutter_app
         run: flutter build ipa --no-sound-null-safety --no-codesign
 
-
-      - name: Start Scan
-        uses: Ostorlab/ostorlab_actions@v1.1.1
+      - name: Upload IPA
+        uses: actions/upload-artifact@v3
         with:
-          scan_profile: full_scan
-          asset_type: ios-ipa
-          scan_title: Periodic_Insecure_ipa
-          target: ios/build/IPA/*.ipa
-          ostorlab_api_key: ${{ secrets.ostorlab_api_key }}
+          name: Ipa-file
+          path: ios/build/IPA/*.ipa
+
+    run_scan:
+      runs-on: ubuntu-latest
+      needs: build_app
+      steps:
+        - name: Download IPA
+          uses: actions/download-artifact@v3
+          with:
+            name: Ipa-file
+        - name: Run Scan
+          uses: Ostorlab/ostorlab_actions@v1.1.1
+          with:
+            scan_profile: full_scan
+            asset_type: ios-ipa
+            scan_title: Periodic_Insecure_ipa
+            target: ios/build/IPA/*.ipa
+            ostorlab_api_key: ${{ secrets.ostorlab_api_key }}
