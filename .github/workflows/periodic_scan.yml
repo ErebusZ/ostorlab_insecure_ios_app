@@ -26,7 +26,7 @@ jobs:
 
       # TODO(Anas): remove this.
       - name: discovery
-        run: bash -c 'find / -name "*.ipa"'
+        run: bash -c 'find . -name "*.ipa"'
 
       - name: Upload IPA
         uses: actions/upload-artifact@v3
