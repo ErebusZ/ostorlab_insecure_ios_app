@@ -20,18 +20,17 @@ jobs:
         working-directory: ostorlab_insecure_flutter_app
         run: flutter pub get
 
-      - name: Build IPA
+      - name: Build IPA files
         working-directory: ostorlab_insecure_flutter_app
-        run: flutter build ipa --release
+        run: flutter build ipa --no-sound-null-safety --no-codesign
 
-#      - name: Release IPA
-#        run: flutter build ios --release
+      - name: Build IPA app
+        run: |
+          mkdir ostorlab_insecure_app
+          cp -r ostorlab_insecure_flutter_app/build/ios/Release-iphones/* ostorlab_insecure_app/
+          zip ostorlab_insecure_app
+          mv ostorlab_insecure_app.zip ostorlab_insecure_app.ipa
 
-      - name: check build folder
-        run: ls ./build/
-
-      - name: check build folder
-        run: ls ostorlab_insecure_flutter_app/build/
 
 
 
@@ -39,4 +38,4 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            ./build/ios/ipa/Runner.ipa
+            ostorlab_insecure_app.ipa
