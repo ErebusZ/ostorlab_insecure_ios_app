@@ -26,11 +26,11 @@ jobs:
 
 
       - name: check build folder
-        run: ls ostorlab_insecure_flutter_app/build/ios/ipa/
+        run: ls ./build/ios/ipa/
 
 
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            ostorlab_insecure_flutter_app/build/ios/ipa/Runner.ipa
+            ./build/ios/ipa/Runner.ipa
