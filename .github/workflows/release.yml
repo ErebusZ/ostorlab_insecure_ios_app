@@ -26,7 +26,10 @@ jobs:
 
 
       - name: check build folder
-        run: ls ./build/ios/outputs/ipa/
+        run: ls ./build/
+
+      - name: check build folder
+        run: ls ./build/ios/
 
 
       - name: Release
