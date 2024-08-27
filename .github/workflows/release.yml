@@ -31,7 +31,8 @@ jobs:
         run: ls ./build/
 
       - name: check build folder
-        run: ls ./build/ios/
+        run: ls ostorlab_insecure_flutter_app/build/
+
 
 
       - name: Release
