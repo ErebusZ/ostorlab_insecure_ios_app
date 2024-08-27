@@ -22,10 +22,10 @@ jobs:
 
       - name: Build IPA
         working-directory: ostorlab_insecure_flutter_app
-        run: flutter build ipa --no-sound-null-safety --no-codesign
+        run: flutter build ipa --release
 
-      - name: Release IPA
-        run: flutter build ios --release
+#      - name: Release IPA
+#        run: flutter build ios --release
 
       - name: check build folder
         run: ls ./build/
