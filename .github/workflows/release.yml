@@ -1,0 +1,36 @@
+name: Release IPA
+on:
+  workflow_dispatch:
+  release:
+    types: [ published ]
+
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.7.12"
+          channel: 'stable'
+
+      - name: Install dependencies
+        working-directory: ostorlab_insecure_flutter_app
+        run: flutter pub get
+
+      - name: Build IPA
+        working-directory: ostorlab_insecure_flutter_app
+        run: flutter build ipa --no-sound-null-safety --no-codesign
+
+
+      - name: check build folder
+        run: ls ostorlab_insecure_flutter_app/build/ios/ipa/
+
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            ostorlab_insecure_flutter_app/build/ios/ipa/Runner.ipa
