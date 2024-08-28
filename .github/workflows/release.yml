@@ -27,9 +27,8 @@ jobs:
       - name: Build IPA app
         working-directory: ostorlab_insecure_flutter_app
         run: |
-          ls 
-          ls build
           ls build/ios
+          echo break+++
           mkdir ostorlab_insecure_app
           cp -r build/ios/Release-iphoneos/* ostorlab_insecure_app/
           zip ostorlab_insecure_app
