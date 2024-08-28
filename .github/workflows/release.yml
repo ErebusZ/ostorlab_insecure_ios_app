@@ -25,7 +25,7 @@ jobs:
         run: flutter build ipa --no-sound-null-safety --no-codesign
 
       - name: Build IPA app
-        directory: ostorlab_insecure_flutter_app
+        working-directory: ostorlab_insecure_flutter_app
         run: |
           mkdir ostorlab_insecure_app
           cp -r build/ios/Release-iphoneos/* ostorlab_insecure_app/
